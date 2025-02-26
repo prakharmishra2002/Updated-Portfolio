@@ -107,16 +107,55 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // Form submission handler
-  const contactForm = document.querySelector("#contact-form")
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault()
-      // Add your form submission logic here
-      alert("Thank you for your message! I will get back to you soon.")
-      contactForm.reset()
+  // // Form submission handler
+  // const contactForm = document.querySelector("#contact-form")
+  // if (contactForm) {
+  //   contactForm.addEventListener("submit", (e) => {
+  //     e.preventDefault()
+  //     // Add your form submission logic here
+  //     alert("Thank you for your message! I will get back to you soon.")
+  //     contactForm.reset()
+  //   })
+  // }
+
+
+
+
+// Initialize EmailJS with your public key (get this from EmailJS dashboard)
+emailjs.init("Pn4yFLXy4sk-x5yry");
+
+// Form submission handler
+const contactForm = document.querySelector("#contact-form");
+if (contactForm) {
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // Get form data
+    const formData = new FormData(contactForm);
+
+    // Send email using EmailJS
+    emailjs.send("service_s069mpj", "template_fnsnl9p", {
+      from_name: formData.get('from_name'), // assuming your form has a 'name' field
+      reply_to: formData.get('reply_to'), // assuming your form has an 'email' field
+      subject: formData.get('subject'), // assuming your form has a 'subject' field
+      message: formData.get('message'), // assuming your form has a 'message' field
+      to_email: 'prakharmishra027@gmail.com'
     })
-  }
+    .then(() => {
+      alert("Thank you for your message! I will get back to you soon.");
+      contactForm.reset();
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert("There was an error sending your message. Please try again.");
+    });
+  });
+}
+
+
+
+
+
 
   // Navbar background change on scroll
   window.addEventListener("scroll", () => {
