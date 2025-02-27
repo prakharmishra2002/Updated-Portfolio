@@ -119,12 +119,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // }
 
 
+//script for 'see more' button is written with experience code in the index.html file
 
-
-// Initialize EmailJS with your public key (get this from EmailJS dashboard)
-emailjs.init("Pn4yFLXy4sk-x5yry");
 
 // Form submission handler
+// Initialize EmailJS with your public key (get this from EmailJS dashboard)
+emailjs.init("Pn4yFLXy4sk-x5yry");
 const contactForm = document.querySelector("#contact-form");
 if (contactForm) {
   contactForm.addEventListener("submit", (e) => {
