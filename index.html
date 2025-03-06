@@ -270,10 +270,12 @@
     
 
     <!-- Projects Section -->
-    <section id="projects" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5" data-aos="fade-up">Projects</h2>
-            <div class="row">
+<!-- Projects Section -->
+<section id="projects" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5" data-aos="fade-up">Projects</h2>
+        <div class="projects-wrapper">
+            <div class="row projects-container" id="projectsContainer">
                 <div class="col-md-4 mb-4" data-aos="flip-left">
                     <div class="project-card">
                         <div class="project-card-inner">
@@ -284,7 +286,7 @@
                             <div class="project-card-back">
                                 <h3>Stock Price Prediction</h3>
                                 <p>The Stock Price Prediction System is a machine learning model, developed in python, designed to forecast future stock prices using historical market data.</p>
-                                <a href="https://drive.google.com/drive/folders/1ywBCCWauRrRp6UZD2k2p_xglUePbJnbU"target="_blank" class="btn btn-primary btn-glow">View Project</a>
+                                <a href="https://drive.google.com/drive/folders/1ywBCCWauRrRp6UZD2k2p_xglUePbJnbU" target="_blank" class="btn btn-primary btn-glow">View Project</a>
                             </div>
                         </div>
                     </div>
@@ -299,7 +301,7 @@
                             <div class="project-card-back">
                                 <h3>Q&A Chatbot</h3>
                                 <p>Q&A Chatbot is a basic chatbot, dveloped by Langchain and Streamlit using a prebuild model of ChatGPT 3.5</p>
-                                <a href="https://huggingface.co/spaces/prakharmishra2002/langchainQ-Achatbot"target="_blank" class="btn btn-primary btn-glow">View Project</a>
+                                <a href="https://huggingface.co/spaces/prakharmishra2002/langchainQ-Achatbot" target="_blank" class="btn btn-primary btn-glow">View Project</a>
                             </div>
                         </div>
                     </div>
@@ -314,7 +316,7 @@
                             <div class="project-card-back">
                                 <h3>Hiring Process Analysis</h3>
                                 <p>Undertook this project with the primary goal of conducting a comprehensive analysis and visualization of the company's recruitment. It is a report of this project.</p>
-                                <a href="https://drive.google.com/drive/folders/1z7VZaXYBGH6IM6sXBLAedOCQoNQTy3wp?usp=sharing"target="_blank" class="btn btn-primary btn-glow">View Project</a>
+                                <a href="https://drive.google.com/drive/folders/1z7VZaXYBGH6IM6sXBLAedOCQoNQTy3wp?usp=sharing" target="_blank" class="btn btn-primary btn-glow">View Project</a>
                             </div>
                         </div>
                     </div>
@@ -323,20 +325,115 @@
                     <div class="project-card">
                         <div class="project-card-inner">
                             <div class="project-card-front">
-                                <img src="/placeholder.svg?height=350&width=350" alt="Project 3" class="img-fluid">
+                                <img src="/placeholder.svg?height=350&width=350" alt="Project 4update " class="img-fluid">
                                 <h3>IMDB Movie Analysis</h3>
                             </div>
                             <div class="project-card-back">
                                 <h3>IMDB Movie Analysis</h3>
                                 <p>The IMDB Movie Analysis project is a comprehensive exploration of movie data sourced from IMDb, focusing on trends, ratings, and other key metrics.</p>
-                                <a href="https://drive.google.com/drive/folders/1j87ptsf0AEfERFsKFRqBzFzZnO5tOwKJ?usp=sharing"target="_blank" class="btn btn-primary btn-glow">View Project</a>
+                                <a href="https://drive.google.com/drive/folders/1j87ptsf0AEfERFsKFRqBzFzZnO5tOwKJ?usp=sharing" target="_blank" class="btn btn-primary btn-glow">View Project</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="scroll-hint" id="scrollHint">Swipe left for more</div>
         </div>
-    </section>
+    </div>
+</section>
+
+<style>
+.projects-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.projects-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.projects-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.scroll-hint {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.scroll-hint.visible {
+    opacity: 1;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const projectsContainer = document.getElementById('projectsContainer');
+    const scrollHint = document.getElementById('scrollHint');
+    const projectCards = projectsContainer.children;
+    
+    // Check if there are more than 3 projects
+    if (projectCards.length > 3) {
+        let isDragging = false;
+        let startX;
+        let scrollLeft;
+
+        // Mouse scroll functionality
+        projectsContainer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - projectsContainer.offsetLeft;
+            scrollLeft = projectsContainer.scrollLeft;
+        });
+
+        projectsContainer.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+
+        projectsContainer.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        projectsContainer.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - projectsContainer.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed
+            projectsContainer.scrollLeft = scrollLeft - walk;
+        });
+
+        // Show/hide scroll hint based on scroll position
+        projectsContainer.addEventListener('scroll', () => {
+            const maxScroll = projectsContainer.scrollWidth - projectsContainer.clientWidth;
+            if (projectsContainer.scrollLeft < maxScroll - 10) {
+                scrollHint.classList.add('visible');
+            } else {
+                scrollHint.classList.remove('visible');
+            }
+        });
+
+        // Initial check for scroll hint visibility
+        if (projectsContainer.scrollWidth > projectsContainer.clientWidth) {
+            scrollHint.classList.add('visible');
+        }
+    }
+});
+</script>
 
     <!-- Contact Section -->
     <section id="contact" class="py-5 bg-light">
