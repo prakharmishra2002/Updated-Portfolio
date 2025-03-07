@@ -1,3 +1,4 @@
+/* Root Variables for Theming */
 :root {
   /* Light theme variables */
   --bg-primary: #ffffff;
@@ -9,8 +10,8 @@
   --timeline-line: #212529;
 }
 
+/* Dark Theme Variables */
 [data-theme="dark"] {
-  /* Dark theme variables */
   --bg-primary: #212529;
   --bg-secondary: #343a40;
   --text-primary: #f8f9fa;
@@ -20,6 +21,7 @@
   --timeline-line: #f8f9fa;
 }
 
+/* Base Styles */
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -105,7 +107,7 @@ header {
   color: var(--text-primary);
 }
 
-/* Timeline */
+/* Timeline Styles */
 .timeline {
   position: relative;
   max-width: 1200px;
@@ -282,6 +284,45 @@ header {
   100% {
     transform: rotate(45deg) translateX(100%);
   }
+}
+
+/* Projects Scrolling Styles */
+.projects-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.projects-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.projects-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.scroll-hint {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.scroll-hint.visible {
+  opacity: 1;
 }
 
 /* Responsive Adjustments */

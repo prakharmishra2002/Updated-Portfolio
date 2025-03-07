@@ -1,11 +1,36 @@
+/**
+ * Main JavaScript file for portfolio website
+ * Includes theme toggle, 3D background, animations, and form handling
+ */
+
+// Declare global variables for external libraries
+const AOS = window.AOS
+const THREE = window.THREE
+const emailjs = window.emailjs
+const gsap = window.gsap
+
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize AOS
+  // ===== Toggle Experience Section =====
+  window.toggleExperience = () => {
+    const moreExperience = document.getElementById("more-experience")
+    const btn = document.getElementById("see-more-btn")
+
+    if (moreExperience.style.display === "none") {
+      moreExperience.style.display = "block"
+      btn.textContent = "See Less"
+    } else {
+      moreExperience.style.display = "none"
+      btn.textContent = "See More"
+    }
+  }
+
+  // Initialize AOS animation library
   AOS.init({
     duration: 1000,
     once: true,
   })
 
-  // Theme toggle functionality
+  // ===== Theme Toggle Functionality =====
   const themeToggle = document.getElementById("theme-toggle")
   const body = document.body
   const icon = themeToggle.querySelector("i")
@@ -34,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     icon.className = isDark ? "bi bi-sun-fill" : "bi bi-moon-fill"
   }
 
-  // 3D Background Setup
+  // ===== 3D Background Setup =====
   const canvas = document.getElementById("background-canvas")
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true })
   const scene = new THREE.Scene()
@@ -79,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mouseY = event.clientY
   })
 
-  // Animation
+  // Animation loop
   const animate = () => {
     requestAnimationFrame(animate)
 
@@ -94,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   animate()
 
-  // Smooth scrolling for navigation links
+  // ===== Smooth Scrolling for Navigation Links =====
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault()
@@ -107,57 +132,38 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // // Form submission handler
-  // const contactForm = document.querySelector("#contact-form")
-  // if (contactForm) {
-  //   contactForm.addEventListener("submit", (e) => {
-  //     e.preventDefault()
-  //     // Add your form submission logic here
-  //     alert("Thank you for your message! I will get back to you soon.")
-  //     contactForm.reset()
-  //   })
-  // }
+  // ===== Form Submission Handler with EmailJS =====
+  // Initialize EmailJS with your public key
+  emailjs.init("Pn4yFLXy4sk-x5yry")
+  const contactForm = document.querySelector("#contact-form")
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault()
 
+      // Get form data
+      const formData = new FormData(contactForm)
 
-//script for 'see more' button is written with experience code in the index.html file
-
-
-// Form submission handler
-// Initialize EmailJS with your public key (get this from EmailJS dashboard)
-emailjs.init("Pn4yFLXy4sk-x5yry");
-const contactForm = document.querySelector("#contact-form");
-if (contactForm) {
-  contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    // Get form data
-    const formData = new FormData(contactForm);
-
-    // Send email using EmailJS
-    emailjs.send("service_s069mpj", "template_fnsnl9p", {
-      from_name: formData.get('from_name'), // assuming your form has a 'name' field
-      reply_to: formData.get('reply_to'), // assuming your form has an 'email' field
-      subject: formData.get('subject'), // assuming your form has a 'subject' field
-      message: formData.get('message'), // assuming your form has a 'message' field
-      to_email: 'prakharmishra027@gmail.com'
+      // Send email using EmailJS
+      emailjs
+        .send("service_s069mpj", "template_fnsnl9p", {
+          from_name: formData.get("from_name"),
+          reply_to: formData.get("reply_to"),
+          subject: formData.get("subject"),
+          message: formData.get("message"),
+          to_email: "prakharmishra027@gmail.com",
+        })
+        .then(() => {
+          alert("Thank you for your message! I will get back to you soon.")
+          contactForm.reset()
+        })
+        .catch((error) => {
+          console.error("Error:", error)
+          alert("There was an error sending your message. Please try again.")
+        })
     })
-    .then(() => {
-      alert("Thank you for your message! I will get back to you soon.");
-      contactForm.reset();
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-      alert("There was an error sending your message. Please try again.");
-    });
-  });
-}
+  }
 
-
-
-
-
-
-  // Navbar background change on scroll
+  // ===== Navbar Background Change on Scroll =====
   window.addEventListener("scroll", () => {
     const navbar = document.querySelector(".navbar")
     if (window.scrollY > 50) {
@@ -167,7 +173,7 @@ if (contactForm) {
     }
   })
 
-  // GSAP Animations
+  // ===== GSAP Animations =====
   if (typeof gsap !== "undefined") {
     gsap.from(".profile-3d-container", {
       duration: 1.5,
@@ -190,6 +196,59 @@ if (contactForm) {
         opacity: 1,
         ease: "power2.out",
       })
+    }
+  }
+
+  // ===== Projects Scrolling Functionality =====
+  const projectsContainer = document.getElementById("projectsContainer")
+  const scrollHint = document.getElementById("scrollHint")
+
+  if (projectsContainer && scrollHint) {
+    const projectCards = projectsContainer.children
+
+    // Check if there are more than 3 projects
+    if (projectCards.length > 3) {
+      let isDragging = false
+      let startX
+      let scrollLeft
+
+      // Mouse scroll functionality
+      projectsContainer.addEventListener("mousedown", (e) => {
+        isDragging = true
+        startX = e.pageX - projectsContainer.offsetLeft
+        scrollLeft = projectsContainer.scrollLeft
+      })
+
+      projectsContainer.addEventListener("mouseleave", () => {
+        isDragging = false
+      })
+
+      projectsContainer.addEventListener("mouseup", () => {
+        isDragging = false
+      })
+
+      projectsContainer.addEventListener("mousemove", (e) => {
+        if (!isDragging) return
+        e.preventDefault()
+        const x = e.pageX - projectsContainer.offsetLeft
+        const walk = (x - startX) * 2 // Scroll speed
+        projectsContainer.scrollLeft = scrollLeft - walk
+      })
+
+      // Show/hide scroll hint based on scroll position
+      projectsContainer.addEventListener("scroll", () => {
+        const maxScroll = projectsContainer.scrollWidth - projectsContainer.clientWidth
+        if (projectsContainer.scrollLeft < maxScroll - 10) {
+          scrollHint.classList.add("visible")
+        } else {
+          scrollHint.classList.remove("visible")
+        }
+      })
+
+      // Initial check for scroll hint visibility
+      if (projectsContainer.scrollWidth > projectsContainer.clientWidth) {
+        scrollHint.classList.add("visible")
+      }
     }
   }
 })
