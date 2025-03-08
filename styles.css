@@ -349,8 +349,23 @@ header {
     padding: 0.5rem 0;
   }
 
-  .project-card {
+/*   .project-card {
     height: 350px;
+  } */
+
+  /* Adjusting the height of project cards */
+  .project-card {
+    height: auto; /* Remove fixed height */
+    max-height: 350px; /* Optional: set a maximum height */
+    padding-bottom: 20px; /* Optional: add padding for better spacing */
+  }
+
+  /* Alternatively, use viewport height */
+  .project-card {
+    height: 50vh; /* Set height to 50% of viewport height */
   }
 }
+}
+
+
 
