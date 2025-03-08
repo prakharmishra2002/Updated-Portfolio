@@ -1,4 +1,4 @@
-# 🌟 Modern Portfolio Website
+<h1 align='center'> 🌟 Modern Portfolio Website </h1>
 
 <div align="center">
   
@@ -34,36 +34,39 @@
 
 ## 📂 Project Structure
 
-\`\`\`
-portfolio/
-├── app/                  # Application core files
-├── components/           # Reusable components
-├── hooks/               # Custom React hooks
-├── lib/                 # Utility functions
-├── public/              # Static assets
-├── styles/              # CSS styles
-├── index.html           # Main HTML file
-├── script.js            # Main JavaScript file
-└── styles.css           # Main CSS file
-\`\`\`
+
+    portfolio/
+    ├── app/                  # Application core files
+    ├── components/           # Reusable components
+    ├── hooks/               # Custom React hooks
+    ├── lib/                 # Utility functions
+    ├── public/              # Static assets
+    ├── styles/              # CSS styles
+    ├── index.html           # Main HTML file
+    ├── script.js            # Main JavaScript file
+    └── styles.css           # Main CSS file
+
 
 ## 🚀 Getting Started
 
 1. **Clone the repository**
-   \`\`\`bash
+   ```bash
    git clone https://github.com/yourusername/portfolio.git
-   \`\`\`
+ 
 
 2. **Install dependencies**
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
+   
 
 3. **Run development server**
-   \`\`\`bash
+   ```bash
    npm run dev
-   \`\`\`
 
+4. **Run through HTML:**
+   ```
+   Or there is a simple way - Just copy the path of index.html file and paste it on browser
+   
 ## 🎨 Customization
 
 1. **Theme Colors**: Modify the CSS variables in \`styles.css\`
@@ -91,20 +94,26 @@ portfolio/
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/yourusername/portfolio/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/prakharmishra2002/updated-portfolio/issues).
 
 ## 📝 License
 
-This project is [MIT](./LICENSE) licensed.
+This work is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png)
+
+## Copyright
+
+© [Prakhar Mishra] [2025]. All rights reserved.
 
 ## 👨‍💻 Author
 
 <div align="center">
 
-**Your Name**
+**Prakhar Mishra**
 
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/prakharmishra2002)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/yourusername)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/prakhar-mishra-b80809282)
 
 </div>
 
