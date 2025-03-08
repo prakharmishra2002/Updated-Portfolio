@@ -156,12 +156,12 @@ header {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 1.0s;
+  transition: transform 0.8s;
   transform-style: preserve-3d;
 }
 
 .project-card:hover .project-card-inner {
-  transform: rotateY(540deg);
+  transform: rotateY(180deg);
 }
 
 .project-card-front,
