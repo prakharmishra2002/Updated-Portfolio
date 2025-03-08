@@ -161,7 +161,7 @@ header {
 }
 
 .project-card:hover .project-card-inner {
-  transform: rotateY(360deg);
+  transform: rotateY(180deg);
 }
 
 .project-card-front,
