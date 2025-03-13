@@ -8,6 +8,7 @@
   --border-color: #dee2e6;
   --card-bg: #ffffff;
   --timeline-line: #212529;
+  --form-text: #212529; /* Added for form text color */
 }
 
 /* Dark Theme Variables */
@@ -19,6 +20,7 @@
   --border-color: #495057;
   --card-bg: #343a40;
   --timeline-line: #f8f9fa;
+  --form-text: #f8f9fa; /* Added for form text color in dark mode */
 }
 
 /* Base Styles */
@@ -144,6 +146,12 @@ header {
   background: var(--card-bg);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  color: var(--text-primary); /* Fix for experience section text */
+}
+
+/* Fix for list items in timeline */
+.timeline-content li {
+  color: var(--text-primary);
 }
 
 /* Project Cards */
@@ -196,7 +204,6 @@ header {
   display: block;
 }
 
-
 /* Contact Form */
 .contact-card {
   background: var(--card-bg);
@@ -208,15 +215,21 @@ header {
 .contact-form .form-control {
   background-color: var(--bg-primary);
   border-color: var(--border-color);
-  color: var(--text-primary);
+  color: var(--form-text); /* Fix for contact form text */
   padding: 0.8rem;
 }
 
 .contact-form .form-control:focus {
   background-color: var(--bg-primary);
-  color: var(--text-primary);
+  color: var(--form-text); /* Fix for contact form text when focused */
   border-color: #0d6efd;
   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Fix for placeholder text color */
+.contact-form .form-control::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
 }
 
 /* Button Glow Effect */
@@ -258,6 +271,11 @@ header {
 #theme-toggle:hover {
   background-color: var(--text-primary);
   color: var(--bg-primary);
+}
+
+/* Fix for background-light sections in dark mode */
+[data-theme="dark"] .bg-light {
+  background-color: var(--bg-secondary) !important;
 }
 
 /* Animations */
@@ -357,10 +375,6 @@ header {
     padding: 0.5rem 0;
   }
 
-/*   .project-card {
-    height: 350px;
-  } */
-
   /* Adjusting the height of project cards */
   .project-card {
     height: auto; /* Remove fixed height */
@@ -373,6 +387,4 @@ header {
     height: 50vh; /* Set height to 50% of viewport height */
   }
 }
-
-
 
