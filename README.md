@@ -9,7 +9,12 @@
 
 </div>
 
-## ✨ Features
+
+
+<!--## ✨ Features -->
+<h2> ✨ Features</h2>
+
+<img align="right" alt="Coding" width="500" src=https://github.com/prakharmishra2002/prakharmishra2002/blob/main/Animated%20Image.gif>
 
 - 🌓 Dynamic Dark/Light Mode
 - 🎨 Interactive 3D Background
