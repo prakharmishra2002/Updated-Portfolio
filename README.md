@@ -9,7 +9,13 @@
 
 </div>
 
-## ✨ Features
+
+
+<!--## ✨ Features -->
+<h2> ✨ Features</h2>
+
+<img align="right" alt="Coding" width="250" src=https://github.com/prakharmishra2002/Updated-Portfolio/blob/main/Giggling%20Robot.gif>
+
 
 - 🌓 Dynamic Dark/Light Mode
 - 🎨 Interactive 3D Background
